@@ -5,12 +5,17 @@
     padding-right: 16px;
 }
 
-.proclamation {
+.proclamation-wrapper {
     padding: 8px 16px;
     border-radius: 8px;
     background-color: #111;
     color: #ccc;
     opacity: 0.8;
     margin-bottom: 10px;
+    transition: padding ease-in-out 500ms;
+}
+
+.proclamation {
     transition: height ease-in-out 500ms;
+    overflow: hidden;
 }
