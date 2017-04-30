@@ -12,4 +12,5 @@
     color: #ccc;
     opacity: 0.8;
     margin-bottom: 10px;
+    transition: height ease-in-out 500ms;
 }
