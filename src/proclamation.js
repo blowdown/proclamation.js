@@ -33,6 +33,7 @@
             setTimeout(close, time || 5000);
         }
 
+        var isClosed = false;
         var isClosing = false;
         function close() {
             if (isClosing) {
@@ -71,12 +72,14 @@
             function remove() {
                 if (heightDone && paddingTopDone && paddingBottomDone) {
                     container.removeChild(wrapper);
+                    isClosed = true;
                 }
             }
         }
 
         return {
-            close: close
+            close: close,
+            isClosed: function() { return isClosed; }
         };
     }
 })(this);
