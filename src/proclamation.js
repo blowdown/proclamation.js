@@ -20,11 +20,26 @@
         var height = notification.clientHeight;
         notification.style.height = 0;
 
+        // HACK: trigger CSS height transition.
         setTimeout(function() {
             notification.style.height = height + 'px';
         }, 0);
 
-        setTimeout(function() {
+        wrapper.addEventListener('click', function() {
+            close();
+        });
+
+        if (time !== Infinity) {
+            setTimeout(close, time || 5000);
+        }
+
+        var isClosing = false;
+        function close() {
+            if (isClosing) {
+                return;
+            }
+
+            isClosing = true;
             wrapper.style.paddingTop = 0;
             wrapper.style.paddingBottom = 0;
             notification.style.height = 0;
@@ -58,6 +73,6 @@
                     container.removeChild(wrapper);
                 }
             }
-        }, time || 5000);
+        }
     }
 })(this);
