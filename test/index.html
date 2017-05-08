@@ -16,11 +16,14 @@
     <link rel="stylesheet" href="../src/proclamation.css">
 </head>
 <body>
+    <button id="close">close</button>
+
     <script src="../src/proclamation.js"></script>
     <script>
         proclamation('HI!', 10000);
         proclamation('GOODBYE!');
-        proclamation('lol', Infinity);
+        var lol = proclamation('lol', Infinity);
+        document.querySelector('#close').addEventListener('click', lol.close);
     </script>
 </body>
 </html>
