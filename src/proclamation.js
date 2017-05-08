@@ -22,6 +22,9 @@
         container.appendChild(wrapper);
 
         wrapper.className = 'proclamation-wrapper';
+        if (config.type) {
+            wrapper.className += ' proclamation-' + config.type;
+        }
 
         if (config.html) {
             notification.innerHTML = config.html;

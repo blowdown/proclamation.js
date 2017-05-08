@@ -19,3 +19,8 @@
     transition: height ease-in-out 500ms;
     overflow: hidden;
 }
+
+.proclamation-wrapper.proclamation-danger {
+    background-color: #d9534f;
+    color: #fff;
+}
