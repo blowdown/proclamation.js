@@ -6,7 +6,16 @@
     document.body.appendChild(container);
     container.className = 'proclamation-container';
 
-    function proclamation(text, time) {
+    function proclamation(config) {
+        if (typeof config === 'string') {
+            config = {
+                text: arguments[0],
+                time: arguments[1]
+            };
+        }
+
+        config.time = config.time || 5000;
+
         var wrapper = document.createElement('div');
         var notification = document.createElement('div');
         wrapper.appendChild(notification);
@@ -14,7 +23,7 @@
 
         wrapper.className = 'proclamation-wrapper';
 
-        notification.textContent = text;
+        notification.textContent = config.text;
         notification.className = 'proclamation';
 
         var height = notification.clientHeight;
@@ -29,8 +38,8 @@
             close();
         });
 
-        if (time !== Infinity) {
-            setTimeout(close, time || 5000);
+        if (config.time !== Infinity) {
+            setTimeout(close, config.time);
         }
 
         var isClosed = false;
