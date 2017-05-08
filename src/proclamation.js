@@ -23,7 +23,11 @@
 
         wrapper.className = 'proclamation-wrapper';
 
-        notification.textContent = config.text;
+        if (config.html) {
+            notification.innerHTML = config.html;
+        } else {
+            notification.textContent = config.text;
+        }
         notification.className = 'proclamation';
 
         var height = notification.clientHeight;
