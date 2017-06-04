@@ -47,6 +47,9 @@
             if (config.closeOnClick) {
                 close();
             }
+            if (typeof config.onClick === 'function') {
+                config.onClick();
+            }
         });
 
         if (config.time !== undefined) {

@@ -26,6 +26,30 @@
         document.querySelector('#close').addEventListener('click', lol.close);
         proclamation({ text: 'foobar', time: 10000 });
         proclamation({ html: '<i><b>lol</b>kek</i>', type: 'danger', closeOnClick: false });
+
+        var ipFetched = false;
+        var ip = proclamation({
+            text: 'fetch ip and close',
+            closeOnClick: false,
+            onClick: function () {
+                if (ipFetched) {
+                    return;
+                }
+
+                ipFetched = true;
+                fetch('//ip.jsontest.com')
+                    .then(r => r.json())
+                    .then(r => {
+                        var btn = document.createElement('button');
+                        document.body.appendChild(btn);
+                        btn.textContent = 'Your ip is ' + r.ip + '. Click on me to close notification.';
+                        btn.onclick = function () {
+                            btn.remove();
+                            ip.close();
+                        };
+                    });
+            }
+        });
     </script>
 </body>
 </html>
