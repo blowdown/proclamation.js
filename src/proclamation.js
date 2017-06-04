@@ -2,9 +2,36 @@
     'use strict';
     global.proclamation = proclamation;
 
-    var container = document.createElement('div');
-    document.body.appendChild(container);
-    container.className = 'proclamation-container';
+    var containers = createContainers({
+        leftTop: { left: 0, top: 0 },
+        leftBottom: { left: 0, bottom: 0},
+        rightTop: { right: 0, top: 0 },
+        rightBottom: { right: 0, bottom: 0 }
+    })
+
+    function createContainers(descriptions) {
+        var containers = {};
+        for (var name in descriptions) {
+            var styles = descriptions[name];
+            Object.defineProperty(containers, name, { get: makeContainerGetter(styles) });
+        }
+
+        return containers;
+    }
+
+    function makeContainerGetter(styles) {
+        var container;
+        return function() {
+            if (!container) {
+                container = document.createElement('div');
+                document.body.appendChild(container);
+                container.className = 'proclamation-container';
+
+                assign(container.style, styles);
+            }
+            return container;
+        };
+    }
 
     function proclamation(config) {
         if (typeof config === 'string') {
@@ -14,15 +41,25 @@
             };
         }
 
+        if (config.container === undefined) {
+            config.container = 'rightBottom';
+        }
+
         if (config.closeOnClick === undefined) {
             config.closeOnClick = true;
         }
+
+        var container = containers[config.container];
 
         var wrapper = document.createElement('div');
         var notification = document.createElement('div');
         var closeButton = document.createElement('div');
         wrapper.appendChild(notification);
-        wrapper.appendChild(closeButton);
+
+        if (!config.closeOnClick) {
+            wrapper.appendChild(closeButton);
+        }
+
         container.appendChild(wrapper);
 
         closeButton.textContent = '⨯';
@@ -57,8 +94,9 @@
             }
         });
 
-        closeButton.addEventListener('click', function() {
+        closeButton.addEventListener('click', function(e) {
             close();
+            e.stopPropagation();
         });
 
         if (config.time !== undefined) {
@@ -113,5 +151,13 @@
             close: close,
             isClosed: function() { return isClosed; }
         };
+    }
+
+    function assign(destination, source) {
+        for (var key in source) {
+            destination[key] = source[key];
+        }
+
+        return destination;
     }
 })(this);

@@ -20,18 +20,14 @@
 
     <script src="../src/proclamation.js"></script>
     <script>
-        proclamation({
-            text: 'test x button',
-            closeOnClick: false
-        });
-    </script>
-    <script type="text/plain">
         proclamation('HI!', 10000);
         proclamation('GOODBYE!');
+
         var lol = proclamation('lol');
         document.querySelector('#close').addEventListener('click', lol.close);
-        proclamation({ text: 'foobar', time: 10000 });
-        proclamation({ html: '<i><b>lol</b>kek</i>', type: 'danger', closeOnClick: false });
+
+        proclamation({ text: 'foobar', time: 10000, container: 'leftBottom' });
+        proclamation({ html: '<i><b>lol</b>kek</i>', type: 'danger', closeOnClick: false, container: 'rightTop' });
 
         var ipFetched = false;
         var ip = proclamation({

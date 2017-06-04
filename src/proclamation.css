@@ -1,7 +1,5 @@
 .proclamation-container {
     position: fixed;
-    right: 0;
-    bottom: 0;
     padding-right: 16px;
 }
 
@@ -14,6 +12,7 @@
     opacity: 0.8;
     margin-bottom: 10px;
     transition: padding ease-in-out 500ms;
+    overflow: hidden;
 }
 
 .proclamation-close {
