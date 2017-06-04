@@ -20,8 +20,13 @@
 
         var wrapper = document.createElement('div');
         var notification = document.createElement('div');
+        var closeButton = document.createElement('div');
         wrapper.appendChild(notification);
+        wrapper.appendChild(closeButton);
         container.appendChild(wrapper);
+
+        closeButton.textContent = '⨯';
+        closeButton.className = 'proclamation-close';
 
         wrapper.className = 'proclamation-wrapper';
         if (config.type) {
@@ -50,6 +55,10 @@
             if (typeof config.onClick === 'function') {
                 config.onClick();
             }
+        });
+
+        closeButton.addEventListener('click', function() {
+            close();
         });
 
         if (config.time !== undefined) {
