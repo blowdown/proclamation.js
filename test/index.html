@@ -22,10 +22,10 @@
     <script>
         proclamation('HI!', 10000);
         proclamation('GOODBYE!');
-        var lol = proclamation('lol', Infinity);
+        var lol = proclamation('lol');
         document.querySelector('#close').addEventListener('click', lol.close);
         proclamation({ text: 'foobar', time: 10000 });
-        proclamation({ html: '<i><b>lol</b>kek</i>', time: Infinity, type: 'danger' });
+        proclamation({ html: '<i><b>lol</b>kek</i>', type: 'danger' });
     </script>
 </body>
 </html>

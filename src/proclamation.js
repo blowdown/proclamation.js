@@ -14,8 +14,6 @@
             };
         }
 
-        config.time = config.time || 5000;
-
         var wrapper = document.createElement('div');
         var notification = document.createElement('div');
         wrapper.appendChild(notification);
@@ -45,7 +43,7 @@
             close();
         });
 
-        if (config.time !== Infinity) {
+        if (config.time !== undefined) {
             setTimeout(close, config.time);
         }
 
