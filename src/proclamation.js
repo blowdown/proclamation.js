@@ -14,6 +14,10 @@
             };
         }
 
+        if (config.closeOnClick === undefined) {
+            config.closeOnClick = true;
+        }
+
         var wrapper = document.createElement('div');
         var notification = document.createElement('div');
         wrapper.appendChild(notification);
@@ -40,7 +44,9 @@
         }, 0);
 
         wrapper.addEventListener('click', function() {
-            close();
+            if (config.closeOnClick) {
+                close();
+            }
         });
 
         if (config.time !== undefined) {

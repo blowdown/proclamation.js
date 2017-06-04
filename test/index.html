@@ -25,7 +25,7 @@
         var lol = proclamation('lol');
         document.querySelector('#close').addEventListener('click', lol.close);
         proclamation({ text: 'foobar', time: 10000 });
-        proclamation({ html: '<i><b>lol</b>kek</i>', type: 'danger' });
+        proclamation({ html: '<i><b>lol</b>kek</i>', type: 'danger', closeOnClick: false });
     </script>
 </body>
 </html>
